@@ -8,8 +8,22 @@ public class TicTacToe {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the size of the grid: ");
-        size = scanner.nextInt();
+
+        boolean isInputValid = false;
+        while (!isInputValid) {
+            System.out.print("Enter the size of the grid (0-10): ");
+            if (scanner.hasNextInt()) {
+                size = scanner.nextInt();
+                if (size >= 0 && size <= 10) {
+                    isInputValid = true;
+                } else {
+                    System.out.println("Invalid input. Try again!");
+                }
+            } else {
+                System.out.println("Invalid input. Try again!");
+                scanner.next();
+            }
+        }
 
         initializeBoard();
         char winner = '\0';
